@@ -1,0 +1,76 @@
+.page-content {
+  margin: 5% 0;
+}
+
+.card {
+  margin-bottom: 10%;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 100%;
+}
+
+.jumbotron-footer {
+    background-color: #222222;
+    color: white;
+    margin-bottom: 0;
+}
+
+.get-started, .copy {
+  background-color: black;
+  color: white;
+  padding:1%;;
+}
+
+footer {
+  margin-bottom: 0;
+}
+
+.admin-panel{
+  background-color: #222222;
+}
+
+h2 a {
+  display: inline;
+}
+
+.img-cont {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: green;
+}
+
+.btn-inline {
+  display: inline-block;
+}
+
+/*
+# Stripe js
+*/
+
+.StripeElement {
+  background-color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement--focus {
+  box-shadow: 0 1px 3px 0 #cfd7df;
+}
+
+.StripeElement--invalid {
+  border-color: #fa755a;
+}
+
+.StripeElement--webkit-autofill {
+  background-color: #fefde5 !important;
+}
