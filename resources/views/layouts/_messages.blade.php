@@ -3,7 +3,8 @@
 @if(Session::has('success'))
 
 	<div class="container">
-		<div class="alert alert-success" role="alert">
+		<div class="alert alert-success alert-dissmisable show" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 		  <strong> Success: </strong> {{ Session::get('success') }}
 		</div>
 	</div>
@@ -15,6 +16,16 @@
 	<div class="container">
 		<div class="alert alert-danger" role="alert">
 		  <strong> Fail: </strong> {{ Session::get('fail') }}
+		</div>
+	</div>
+
+@endif
+
+@if(Session::has('warning'))
+
+	<div class="container">
+		<div class="alert alert-warning" role="alert">
+		  <strong> Warning: </strong> {{ Session::get('warning') }}
 		</div>
 	</div>
 

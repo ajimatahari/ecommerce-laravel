@@ -11,7 +11,7 @@ class MessagesController extends Controller
 
     public function index() {
         // grab messages
-        $messages = Message::all();
+        $messages = Message::paginate(20);
 
         // pass message to the view
         return view('admin.messages.index', compact('messages'));

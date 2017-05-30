@@ -28,6 +28,7 @@
               <th>Description</th>
               <th>Category</th>
               <th>Image</th>
+              <th>Showcase images</th>
               <th>Stock</th>
               <th>Normal price</th>
               <th>Discounted price</th>
@@ -43,12 +44,14 @@
                 <td> {{ substr($product->description, 0, 50) }}{{ strlen($product->description) > 15 ? "..." : "" }}</td>
                 <td> {{ count($product->category) ? $product->category->name : "N/A" }} </td>
                 <td> {{ $product->image }} </td>
+                <td> {{ count($product->images) }} </td>
                 <td> {{ $product->stock }} </td>
                 <td> {{ $product->price }} </td>
                 <td> {{ $product->discounted_price }} </td>
                 <td class="btn-group-sm">
-                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-secondary btn-sm"> Preview </a>
-                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-success btn-sm"> Edit </a>
+                    <a href="{{ route('products.show', $product->id) }}" class="btn btn-sm btn-secondary"> Preview </a>
+                    <a href="{{ route('images.show', $product->id) }}" class="btn btn-sm btn-info"> Add more images </a>
+                    <a href="{{ route('products.edit', $product->id) }}" class="btn btn-sm btn-success"> Edit </a>
 
                     {!! Form::open(array('route' => ['products.destroy', $product->id], 'method' => 'DELETE', 'class' => 'btn-inline')) !!}
       								{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
@@ -59,5 +62,8 @@
         </tbody>
     </table>
 
+    <div class="col-md-8 offset-md-2">
+        {{ $products->links() }}
+    </div>
 
 @endsection

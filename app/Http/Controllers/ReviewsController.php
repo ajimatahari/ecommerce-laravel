@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Review;
+use App\Notifications\Notif;
 use Auth;
 use Session;
 
@@ -17,7 +18,7 @@ class ReviewsController extends Controller
     public function index()
     {
         // grab all review
-        $reviews = Review::all();
+        $reviews = Review::paginate(20);
 
         // pass variable to the view
         return view('admin.reviews.index', compact('reviews'));
@@ -58,6 +59,9 @@ class ReviewsController extends Controller
         // set flash message
         Session::flash('success', 'The review was created. It is currently pending approval.');
 
+        // Notify admin for new review
+        Auth::user()->notify(new Notif);
+
         // redirect user back
         return redirect()->route('product.page', $request->product_id);
     }
@@ -71,6 +75,8 @@ class ReviewsController extends Controller
     public function show($id)
     {
         //
+        $review = Review::find($id);
+        return view('admin.reviews.show', compact('review'));
     }
 
     /**
@@ -81,7 +87,9 @@ class ReviewsController extends Controller
      */
     public function edit($id)
     {
-        //
+        // get review
+        $review = Review::find($id);
+        return view('admin.reviews.edit', compact('review'));
     }
 
     /**
@@ -93,7 +101,20 @@ class ReviewsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+      // validate input
+      $this->validate($request, [
+        'content' => 'required | min:10 | max:5000'
+      ]);
+
+      $review = Review::find($id);
+      $review->content = $request->content;
+      $review->save();
+
+      // set flash message
+      Session::flash('success', 'The review was created. It is currently pending approval.');
+
+      // redirect user back
+      return redirect()->route('reviews.index');
     }
 
     /**
@@ -105,16 +126,33 @@ class ReviewsController extends Controller
     public function destroy($id)
     {
         //
+        $review = Review::find($id);
+        $review->delete();
+
+        // set flash message
+        Session::flash('success', 'Review deleted.');
+
+        // redirect
+        return redirect()->route('reviews.index');
     }
 
-    public function approve($id) {
+    public function toggleApproval($id) {
       // grab message and approve it
       $review = Review::find($id);
-      $review->approved = 1;
-      $review->save();
 
-      // set flash message
-      Session::flash('success', 'Review approved. Now it will show onto the product page.');
+      if (!$review->approved) {
+        $review->approved = 1;
+        $review->save();
+
+        // set flash message
+        Session::flash('success', 'Review approved. Now it will show onto the product page.');
+      } else {
+        $review->approved = 0;
+        $review->save();
+
+        // set flash message
+        Session::flash('warning', 'The review status is now pending approval.');
+      }
 
       // redirect user to review page
       return redirect()->route('reviews.index');

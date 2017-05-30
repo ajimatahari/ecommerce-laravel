@@ -5,6 +5,7 @@
 @section('content')
 
 <div class="container">
+  <section class="pad">
     <div class="col-md-8 offset-md-2">
       <h2 class""><strong>CONTACT PAGE</strong></h2>
     </div>
@@ -41,7 +42,7 @@
       {!! Form::close() !!}
 
     </div>
-
+  </section>
 </div>
 
 @stop

@@ -3,6 +3,7 @@
 @section('content')
 
   <div class="container-fluid">
+    <section>
       <div class="row">
 
             <!-- Admin dashboard panel -->
@@ -17,7 +18,7 @@
                   <a class="dropdown-item" href="/admin/orders"> Orders </a> <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="/admin/messages"> Messages </a><div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="/admin/reviews"> Reviews </a><div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href=""> Reports </a>
+                  <a class="dropdown-item" href="/admin/reports"> Reports </a>
                 <div class="dropdown-divider"></div>
             </div> <!-- end of admin dashboard panel -->
 
@@ -28,6 +29,7 @@
             </div> <!-- end of admin dashboard panel -->
 
       </div>
+    </section>
   </div>
 
 

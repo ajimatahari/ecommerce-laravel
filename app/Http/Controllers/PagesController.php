@@ -7,6 +7,7 @@ use View;
 use App\Product;
 use App\User;
 use App\Order;
+use App\Review;
 use Mail;
 use Session;
 use App\Message;
@@ -66,11 +67,6 @@ class PagesController extends Controller
 
     }
 
-    public function getPaymentDetails() {
-      $user = User::find(Auth::user()->id);
-      return view('pages.user.payment-details', compact('user'));
-    }
-
     public function getShop() {
       // grab all products and assign them to a variable
       $products = Product::all();
@@ -88,9 +84,17 @@ class PagesController extends Controller
 
     public function getUserOrders() {
       // grab all user orders
-      $user = User::find(Auth::user()->id);
+      $orders = Order::orderBy('id', 'desc')->where('user_id', '=', Auth::user()->id)->paginate(5);
       // return view
-      return view('pages.orders', compact('user'));
+      return view('pages.orders', compact('user', 'orders'));
+    }
+
+    public function getUserReviews() {
+      // grab all user orders
+      $user = User::find(Auth::user()->id);
+      $reviews = Review::orderBy('id', 'desc')->where('user_id', '=', Auth::user()->id)->paginate(20);
+      // return view
+      return view('pages.reviews', compact('user'));
     }
 
     public function getDashboard() {
@@ -107,5 +111,9 @@ class PagesController extends Controller
       $orders = Order::all();
 
       return view('admin.index', compact('products', 'users', 'lastTenUsers', 'orders'));
+    }
+
+    public function getReports() {
+        return view('admin.reports');
     }
 }

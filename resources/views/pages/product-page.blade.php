@@ -2,6 +2,10 @@
 
 @section('title', ' | Product ')
 
+@section('stylesheets')
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/lightgallery/1.3.9/css/lightgallery.css">
+@endsection
+
 @section('content')
 
   <div class="container">
@@ -17,21 +21,6 @@
       <hr> <br>
 
     <div class="row">
-      <div class="col-md-5">
-        <div class="row">
-          {{-- @foreach ($product->images as $image)
-
-          @endforeach --}}
-
-          <div class="col-md-6">{{ Html::image('images/products/' . $product->image, 'The image does not exist', ['class' => 'img-cont']) }}</div>
-          <div class="col-md-6">{{ Html::image('images/products/' . $product->image, 'The image does not exist', ['class' => 'img-cont']) }}</div>
-          <div class="col-md-6">{{ Html::image('images/products/' . $product->image, 'The image does not exist', ['class' => 'img-cont']) }}</div>
-          <div class="col-md-6">{{ Html::image('images/products/' . $product->image, 'The image does not exist', ['class' => 'img-cont']) }}</div>
-          <div class="col-md-6">{{ Html::image('images/products/' . $product->image, 'The image does not exist', ['class' => 'img-cont']) }}</div>
-          <div class="col-md-6">{{ Html::image('images/products/' . $product->image, 'The image does not exist', ['class' => 'img-cont']) }}</div>
-          </div>
-      </div>
-
       <div class="col-md-5 offset-md-1">
                 <div class="card">
                   <div class="card-block card-header">
@@ -85,7 +74,17 @@
                    </ul>
 
               </div> <!-- end of card -->
-      </div> <!-- end of container class -->
+      </div> <!-- end of product container -->
+
+      <div class="col-md-5" id="display">
+                @foreach ($product->images as $image)
+                    <div class="col-md-6">
+                        <a href="{{ asset('images/products/'. $image->filename) }}">
+                            {{ Html::image('images/products/' . $image->filename, 'The image does not exist', ['class' => 'img-cont']) }}
+                        </a>
+                    </div>
+                @endforeach
+        </div>
     </div> <!-- end of card row -->
 
     <br><hr>
@@ -141,4 +140,21 @@
     <br>
 
 </div>
+@endsection
+
+@section('scripts')
+  <script src="https://cdn.jsdelivr.net/lightgallery/1.3.9/js/lightgallery.min.js"></script>
+
+  <script type="text/javascript">
+      lightbox.option({
+        'resizeDuration': 1000,
+        'wrapAround': true,
+        'maxWidth': 20000,
+        'maxHeigth': 20000
+      });
+
+      $(document).ready(function() {
+           $("#display").lightGallery();
+       });
+  </script>
 @endsection

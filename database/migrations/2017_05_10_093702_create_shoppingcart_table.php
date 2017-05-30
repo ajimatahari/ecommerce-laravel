@@ -12,12 +12,13 @@ class CreateShoppingcartTable extends Migration
     public function up()
     {
         Schema::create('shoppingcart', function (Blueprint $table) {
+            $table->increments('id');
             $table->string('identifier');
             $table->string('instance');
             $table->longText('content');
             $table->nullableTimestamps();
 
-            $table->primary(['identifier', 'instance']);
+          
         });
     }
     /**

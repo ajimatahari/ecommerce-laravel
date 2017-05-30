@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Order;
+use Session;
 
 class OrdersController extends Controller
 {
@@ -49,7 +50,11 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        // grab
+        // retrive order by id
+        $order = Order::find($id);
+
+        // pass order to the view
+        return view('admin.orders.show', compact('order'));
     }
 
     /**
@@ -84,5 +89,27 @@ class OrdersController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function toggleDelivered($id) {
+      // grab message and approve it
+      $order = Order::find($id);
+
+      if (!$order->delivered) {
+        $order->delivered = 1;
+        $order->save();
+
+        // set flash message
+        Session::flash('success', 'Order status was marked delivered.');
+      } else {
+        $order->delivered = 0;
+        $order->save();
+
+        // set flash message
+        Session::flash('warning', 'Order status marked as undelivered.');
+      }
+
+      // redirect user to review page
+      return back();
     }
 }

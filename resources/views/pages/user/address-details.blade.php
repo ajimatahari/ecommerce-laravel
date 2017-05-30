@@ -39,14 +39,25 @@
                     <td> {{ $address->state }} </td>
                     <td> {{ $address->post_code }} </td>
                     <td> {{ $address->country }} </td>
-                    <td> No </td>
-                    <td> No </td>
+                    <td> {{ $address->billing_address ? "Yes" : "No" }} </td>
+                    <td> {{ $address->shipping_address ? "Yes" : "No" }} </td>
                     <td>
 
                       <a href="{{ route('address.edit', $address->id) }}" class="btn btn-sm btn-block btn-success"> Edit </a>
-                      <a href="#" class="btn btn-sm btn-block btn-danger"> Delete </a>
-                      <a href="#" class="btn btn-sm btn-block btn-secondary"> Default billing </a>
-                      <a href="#" class="btn btn-sm btn-block btn-secondary"> Default shipping </a>
+
+                      {!! Form::open(['route' => ['address.destroy', $address->id], 'method' => 'DELETE', 'class' => 'btn-inline btn-block']) !!}
+                          {{  Form::submit('Delete', ['class' => 'btn btn-sm btn-block btn-danger']) }}
+                      {!! Form::close() !!}
+
+                    {{-- Display the default billing button if the address is not by default  --}}
+                      @if (!$address->billing_address)
+                        <a href="{{ route('address.toggleBillingAddress', $address->id) }}" class="btn btn-sm btn-block btn-secondary"> Default billing </a>
+                      @endif
+
+                      {{-- Display the default shippinh button if the address is not by default  --}}
+                      @if (!$address->shipping_address)
+                        <a href="{{ route('address.toggleShippingAddress', $address->id) }}" class="btn btn-sm btn-block btn-secondary"> Default shipping </a>
+                      @endif
                     </td>
                   </tr>
                 @endforeach

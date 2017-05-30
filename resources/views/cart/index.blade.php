@@ -5,6 +5,7 @@
 @section('content')
 
   <div class="container">
+    <section>
 
     <h1 class="text-center"> Cart items </h1>
     <hr> <br>
@@ -63,7 +64,7 @@
 
     <div class="row">
         <div class="col-md-6">
-            <a href="#" class="btn btn-lg btn-primary btn-block"> Save wishlist </a>
+            <a href="{{ action('WishlishtController@store') }}" class="btn btn-lg btn-primary btn-block"> Save wishlist </a>
         </div>
 
         <div class="col-md-6">
@@ -71,6 +72,6 @@
         </div>
     </div>
 
-
-  </div>
+  </section>
+</div>
 @endsection

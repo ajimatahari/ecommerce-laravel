@@ -49,6 +49,38 @@ a {
   display: inline-block;
 }
 
+
+#home {
+  background-image: url('/images/home2.jpg');
+  background-size: cover;
+  background-size: 100%;
+  height: 100vh;
+
+}
+
+#testimonials {
+  background-color: #ECEEEF;
+  padding: 5% 0;
+  margin-bottom: 0;
+}
+
+.stats {
+  background-color: grey; 
+}
+
+.notification {
+  width: 30rem;
+}
+
+.btn-inline {
+  display: inline-block;
+}
+
+.img-display {
+  width: 20px;
+  height: 20px;
+}
+
 /*
 # Stripe js
 */

@@ -19,7 +19,7 @@ class ProductsController extends Controller
     public function index()
     {
         // get all Products
-        $products = Product::all();
+        $products = Product::paginate(20);
 
         // pass products variable to the view
         return view('admin.products.index')->withProducts($products);
@@ -205,4 +205,5 @@ class ProductsController extends Controller
         // redirect to products dashboard
         return redirect()->route('products.index');
     }
+
 }

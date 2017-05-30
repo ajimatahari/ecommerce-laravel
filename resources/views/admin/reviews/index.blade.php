@@ -1,6 +1,6 @@
 @extends('admin.layout')
 
-@section('title', ' | Messages')
+@section('title', ' | Reviews')
 
 @section('admin-content')
 
@@ -40,9 +40,9 @@
                       <td class="btn-group-sm">
                        <a href="{{ route('reviews.edit', $review->id) }}" class="btn btn-sm btn-primary">  Edit review </a>
                        <a href="{{ route('reviews.show', $review->id) }}" class="btn btn-sm btn-secondary"> View full review </a>
-                       <a href="{{ route('reviews.approve', $review->id) }}" class="btn btn-sm btn-success"> Approve review </a>
+                       <a href="{{ route('reviews.approve', $review->id) }}" class="btn btn-sm btn-success"> {{ $review->approved ? "Unapprove review" : "Approve review" }}</a>
 
-                       {!! Form::open(['class'=> 'btn-inline']) !!}
+                       {!! Form::open(['route' => ['reviews.destroy', $review->id], 'method' => 'DELETE', 'class'=> 'btn-inline']) !!}
                           {{  Form::submit('Delete review', ['class' => 'btn btn-sm btn-danger'])}}
                        {{ Form::close() }}
                      </td>
@@ -55,7 +55,7 @@
   </div>
 
     <div class="col-md-8 offset-md-2">
-        // further paginate
+        {{ $reviews->links() }}
     </div>
 
 

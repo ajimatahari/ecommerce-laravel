@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
 use Cart;
+use Mail;
 
 class Order extends Model
 {
@@ -39,6 +40,24 @@ class Order extends Model
           'qty' => $item->qty,
           'total' => $item->qty * $item->price
         ]);
+
+        // Send order place confirmation
+        $data = [
+          'name' => 'Company name',
+          'email'=> 'andrei.hribanas@gmail.com',
+          'subject' => 'Order confirmation: '. $order->id ,
+          'to' =>  $order->user->email,
+          'content' => 'Payment received for the order. The goods will be dispatched soon.'
+        ];
+
+        // send order confirmation mail
+        Mail::send('emails.confirm_order', $data, function($message) use ($data) {
+            $message->from($data['email']);
+            $message->to($data['to']);
+            $message->subject($data['subject']);
+        });
+
+
       }
     }
 }

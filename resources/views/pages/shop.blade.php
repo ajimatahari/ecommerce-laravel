@@ -6,6 +6,7 @@
 @section('content')
 
   <div class="container">
+    <section>
 
       <div class="col-md-12">
         <h1 class="text-center"> WEB SHOP </h1> <br>
@@ -51,6 +52,7 @@
             @endforeach
           </div>
       </div>
-    </div>
+    </section>
+  </div>
 
 @endsection

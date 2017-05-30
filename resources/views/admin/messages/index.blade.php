@@ -16,7 +16,7 @@
     <hr>
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-10 offset-md-1">
 
           <table class="table table-striped table-bordered table-hover">
               <thead class="text-center">
@@ -39,6 +39,7 @@
                       <td> {{ substr($message->content, 0, 15) }}{{ strlen($message->content) > 15 ? "..." : "" }} </td>
                       <td class="btn-group-sm">
                        <a href="{{ url('admin/messages/'.$message->id) }}" class="btn btn-sm btn-secondary"> View full message </a>
+                       <a href=# class="btn btn-sm btn-primary"> Send reply </a>
                      </td>
                   </tr>
                   @endforeach
@@ -46,42 +47,11 @@
           </table>
         </div>
 
-        <div class="col-md-4">
-            <h3 class="text-center"> Message details </h3>
-            <hr>
-
-            <br>
-
-            {!! Form::open() !!}
-
-              <div class="form-group">
-                  {{ Form::label('name', 'Name') }}
-                  {{ Form::text('name', null, ['class' => 'form-control']) }}
-              </div>
-
-              <div class="form-group">
-                  {{ Form::label('email', 'Email') }}
-                  {{ Form::text('email', null, ['class' => 'form-control']) }}
-              </div>
-
-              <div class="form-group">
-                  {{ Form::label('subject', 'Subject') }}
-                  {{ Form::text('subject', null, ['class' => 'form-control']) }}
-              </div>
-
-              <div class="form-group">
-                  {{ Form::label('message', 'Message') }}
-                  {{ Form::textarea('message', null, ['class' => 'form-control']) }}
-              </div>
-
-
-            {!! Form::close() !!}
-      </div>
     </div>
   </div>
 
     <div class="col-md-8 offset-md-2">
-        // further paginate
+        {{ $messages->links() }}
     </div>
 
 

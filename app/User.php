@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'admin', 'stripe_customer_id'
     ];
 
     /**
@@ -35,6 +35,10 @@ class User extends Authenticatable
       return $this->hasMany('App\Address');
     }
 
+    public function cards() {
+      return $this->hasMany('App\Card');
+    }
+
     public function orders() {
       return $this->hasMany('App\Order');
     }
@@ -43,7 +47,7 @@ class User extends Authenticatable
       return $this->hasMany('App\Message');
     }
 
-    public function review() {
+    public function reviews() {
       return $this->hasMany('App\Review');
     }
 }

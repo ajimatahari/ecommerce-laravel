@@ -63,6 +63,10 @@
 
         {!! Form::close() !!} <!-- end form -->
       </div>
+
+      <div class="col-md-8 offset-md-2">
+        {{ $categories->links() }}
+    </div>
 </div>
 
 

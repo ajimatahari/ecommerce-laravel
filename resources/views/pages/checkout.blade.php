@@ -6,6 +6,7 @@
 @section('content')
 
     <div class="container">
+      <section>
       <div class="row">
 
         <!-- Billing details -->
@@ -13,44 +14,22 @@
             <h3 class="text-center">Shipping details</h3>
             <hr> <br>
 
-          {!! Form::open(['method' => 'POST']) !!}
-
-
-          <div class="form-group">
-            <div class="row">
+          <div class="row form-group">
                 <div class="col-md-4"> <strong>{{ Form::label('select_shipping', 'Select address:') }}</strong> </div>
-                <div class="col-md-8"> {{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Select address', 'class' => 'form-control']) }} </div>
-            </div>
+                <div class="col-md-8">
+                  <select class="form-control" name="category">
+            					@foreach($addresses as $address)
+            						<option value='{{ $address->id }}'> {{ $address->address_line }} </option>
+            					@endforeach
+          				</select>
+                </div>
           </div>
 
-          <div class="form-group">
-            <strong>{{ Form::label('address_line', 'Address:') }}</strong>
-            {{ Form::text('address_line', null, ['class' => 'form-control']) }}
-          </div>
+          <br>
 
-          <div class="form-group">
-            <strong>{{ Form::label('city', 'City:') }}</strong>
-            {{ Form::text('city', null, ['class' => 'form-control']) }}
-          </div>
-
-          <div class="form-group">
-            <strong>{{ Form::label('state', 'State:') }}</strong>
-            {{ Form::text('state', null, ['class' => 'form-control']) }}
-          </div>
-
-          <div class="form-group">
-            <strong>{{ Form::label('post_code', 'Post code:') }}</strong>
-            {{ Form::text('post_code', null, ['class' => 'form-control']) }}
-          </div>
-
-          <div class="form-group">
-            <strong>{{ Form::label('country', 'Country:') }}</strong>
-            {{ Form::text('country', null, ['class' => 'form-control']) }}
-          </div>
-
-          <div class="form-group">
-              
-          </div>
+          @foreach($addresses as $s)
+              <div class="shipping_address"></div>
+          @endforeach
 
           {!! Form::close() !!}
         </div> <!-- end of shipping details -->
@@ -58,48 +37,24 @@
 
         <!-- Shipping details -->
         <div class="col-md-5 offset-md-1">
-            <h3 class="text-center">Shipping details</h3>
+            <h3 class="text-center"> Billing details</h3>
             <hr> <br>
 
-          {!! Form::open([ 'method' => 'POST']) !!}
-
-
-          <div class="form-group">
-            <div class="row">
-                <div class="col-md-4"> <strong>{{ Form::label('select_shipping', 'Select address:') }}</strong> </div>
-                <div class="col-md-8"> {{ Form::select('size', ['L' => 'Large', 'S' => 'Small'], null, ['placeholder' => 'Select address', 'class' => 'form-control']) }} </div>
+            <div class="row form-group">
+                  <div class="col-md-10">
+                    <select class="form-control" name="category">
+                        @foreach($addresses as $address)
+                          <option value='{{ $address->id }}'> {{ $address->address_line }} </option>
+                        @endforeach
+                    </select>
+                  </div><a href="#" class="btn btn-sm btn-primary">Add new</a>
             </div>
-          </div>
 
-          <div class="form-group">
-            <strong>{{ Form::label('address_line', 'Address:') }}</strong>
-            {{ Form::text('address_line', null, ['class' => 'form-control']) }}
-          </div>
+            <br>
 
-          <div class="form-group">
-            <strong>{{ Form::label('city', 'City:') }}</strong>
-            {{ Form::text('city', null, ['class' => 'form-control']) }}
-          </div>
-
-          <div class="form-group">
-            <strong>{{ Form::label('state', 'State:') }}</strong>
-            {{ Form::text('state', null, ['class' => 'form-control']) }}
-          </div>
-
-          <div class="form-group">
-            <strong>{{ Form::label('post_code', 'Post code:') }}</strong>
-            {{ Form::text('post_code', null, ['class' => 'form-control']) }}
-          </div>
-
-          <div class="form-group">
-            <strong>{{ Form::label('country', 'Country:') }}</strong>
-            {{ Form::text('country', null, ['class' => 'form-control']) }}
-          </div>
-
-          <div class="form-group">
-
-          </div>
-
+            @foreach($addresses as $s)
+                <div class="shipping_address"></div>
+            @endforeach
           {!! Form::close() !!}
         </div> <!-- end of shipping details -->
 
@@ -109,7 +64,7 @@
 
       <div class="row">
         <!-- Payment details -->
-        <div class="col-md-8 offset-md-2">
+        <div class="col-md-12">
             <h3 class="text-center">Payment details</h3>
             <hr><br>
 
@@ -139,8 +94,8 @@
 
         </div> <!-- end of payment details -->
       </div>
-
-    </div>
+    </section>
+  </div>
 
 @endsection
 
@@ -168,9 +123,9 @@
       // Add an instance of the card Element into the `card-element` <div>
       card.mount('#card-element');
 
-      // Add event listenet
-      card.addEventListener('change', function(event) {
-        var displayError = document.getElementById('card-errors');
+      // Add event listener
+        card.addEventListener('change', function(event) {
+          var displayError = document.getElementById('card-errors');
         if (event.error) {
           displayError.textContent = event.error.message;
         } else {
@@ -180,36 +135,36 @@
 
 
         // Create a token or display an error when the form is submitted.
-var form = document.getElementById('payment-form');
-form.addEventListener('submit', function(event) {
-  event.preventDefault();
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function(event) {
+          event.preventDefault();
 
-  stripe.createToken(card).then(function(result) {
-    if (result.error) {
-      // Inform the user if there was an error
-      var errorElement = document.getElementById('card-errors');
-      errorElement.textContent = result.error.message;
-    } else {
-      // Send the token to your server
-      stripeTokenHandler(result.token);
-    }
-  });
-});
+          stripe.createToken(card).then(function(result) {
+            if (result.error) {
+              // Inform the user if there was an error
+              var errorElement = document.getElementById('card-errors');
+              errorElement.textContent = result.error.message;
+            } else {
+              // Send the token to your server
+              stripeTokenHandler(result.token);
+            }
+          });
+        });
 
 
-function stripeTokenHandler(token) {
-  // Insert the token ID into the form so it gets submitted to the server
-  var form = document.getElementById('payment-form');
-  var hiddenInput = document.createElement('input');
-  hiddenInput.setAttribute('type', 'hidden');
-  hiddenInput.setAttribute('name', 'stripeToken');
-  hiddenInput.setAttribute('value', token.id);
-  form.appendChild(hiddenInput);
+      function stripeTokenHandler(token) {
+        // Insert the token ID into the form so it gets submitted to the server
+        var form = document.getElementById('payment-form');
+        var hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'stripeToken');
+        hiddenInput.setAttribute('value', token.id);
+        form.appendChild(hiddenInput);
 
-  // Submit the form
-  form.submit();
-}
-
+        // Submit the form
+        form.submit();
+      }
   </script>
+
 
 @endsection

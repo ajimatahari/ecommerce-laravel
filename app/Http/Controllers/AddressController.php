@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Address;
 use App\User;
+use DB;
 use Auth;
 use Session;
 
@@ -46,6 +47,8 @@ class AddressController extends Controller
         $address->post_code = $request->post_code;
         $address->country = $request->country;
         $address->user_id = Auth::user()->id;
+        $address->shipping_address = 0;
+        $address->billing_address = 0;
         $address->save();
 
         // set flash message
@@ -108,6 +111,60 @@ class AddressController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // grab address
+        $address = Address::find($id);
+
+        // delete address
+        $address->delete();
+
+        // set flash message
+        Session::flash('success', 'The address was deleted');
+
+        // redirect user
+        return redirect()->route('address.index');
     }
+
+    public function toggleBillingAddress($id){
+      // reset billing
+      DB::table('addresses')->update(['billing_address' => 0]);
+
+      // get address
+      $address = Address::find($id);
+
+      if ($address->billing_address) {
+        $address->billing_address = 0;
+      } else {
+        $address->billing_address = 1;
+        // set flash message
+        Session::flash('success', 'The address is now the default billing address.');
+      }
+
+      $address->save();
+      // redirect user
+      return redirect()->route('address.index');
+    }
+
+    public function toggleShippingAddress($id){
+
+      // reset shipping
+      DB::table('addresses')->update(['shipping_address' => 0]);
+
+      // get address
+      $address = Address::find($id);
+
+      if ($address->shipping_address) {
+        $address->shipping_address = 0;
+      } else {
+        $address->shipping_address = 1;
+        // set flash message
+        Session::flash('success', 'The address is now the default shipping address.');
+      }
+
+      $address->save();
+      // redirect user
+      return redirect()->route('address.index');
+    }
+
+
+
 }

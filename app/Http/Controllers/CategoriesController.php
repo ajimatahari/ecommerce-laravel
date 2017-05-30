@@ -16,7 +16,7 @@ class CategoriesController extends Controller
     public function index()
     {
         // grab all Categories
-        $categories = Category::all();
+        $categories = Category::paginate(20);
 
         // pass categories to the view
         return view('admin.categories.index')->withCategories($categories);

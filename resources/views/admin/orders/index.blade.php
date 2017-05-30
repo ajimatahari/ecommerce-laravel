@@ -20,7 +20,7 @@
     <table class="table table-striped table-bordered  table-hover">
         <thead class="text-center">
               <th>ID</th>
-              <th>User</th>
+              <th>Customer</th>
               <th>Placed at</th>
               <th>Total</th>
               <th>Delivered</th>
@@ -37,9 +37,11 @@
                 <td> {{ $order->total }} </td>
                 <td> {{ $order->delivered }} </td>
                 <td class="btn-group-sm">
-                  <a href="{{ route('orders.show', $order->id) }}" class="btn btn-secondary btn-sm"> View details </a>
-                  <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-success btn-sm"> Edit order</a>
-                  <a href="#" class="btn btn-sm btn-warning"> Mark as delivered</a>
+                  {{-- <a href="{{ route('orders.show', $order->id) }}" class="btn btn-secondary btn-sm"> View details </a> --}}
+                  <a href="{{ route('orders.edit', $order->id) }}" class="btn btn-sm btn-success"> Edit order</a>
+                  <a href="{{ route('orders.show', $order->id) }}" class="btn btn-sm btn-secondary"> View order details</a>
+                  <a href="{{ route('orders.deliver', $order->id) }}" class="btn btn-sm btn-warning"> {{ $order->delivered ? "Mark as undelivered" : "Mark as delivered" }}</a>
+
                     {!! Form::open(array('route' => ['orders.destroy', $order->id], 'method' => 'DELETE', 'class' => 'btn-inline')) !!}
       								{{ Form::submit('Delete', ['class' => 'btn btn-danger btn-sm']) }}
       							{!! Form::close() !!}

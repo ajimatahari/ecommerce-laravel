@@ -19,7 +19,7 @@ class Admin
     public function handle($request, Closure $next)
     {
         if (Auth::check() && Auth::user()->isAdmin() ) {
-          return $next($request);
+            return $next($request);
         }
 
         // set flash message

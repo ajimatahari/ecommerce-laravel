@@ -5,17 +5,29 @@ use Auth;
 use Session;
 use Cart;
 use App\Order;
+use App\Address;
 use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
 
+    public function __construct() {
+
+      if (Cart::total() < 1) {
+        return redirect()->route('shop');
+      }
+
+    }
 
     // check if user is logged in
     public function getIndex() {
       if (Auth::check()) {
+
+        // grab addresses
+        $addresses =  Auth::user()->addresses;
         // redirect user to shipping details
-        return view('pages.checkout');
+        return view('pages.checkout', compact('addresses'));
+
       } else {
         Session::flash('fail', 'You need to login before checkout.');
         return redirect('login');
@@ -29,8 +41,6 @@ class CheckoutController extends Controller
 
     // store payment
     public function completeOrder(Request $request) {
-
-      if (Cart::total() > 0) {
 
         // Payment details
         // Set your secret key: remember to change this to your live secret key in production
@@ -49,8 +59,16 @@ class CheckoutController extends Controller
           "source" => $token,
         ));
 
+
+
         // Create new order
         Order::createOrder();
+
+        // Create invoice
+          // \Stripe\Invoice::create(array(
+          //     "customer" => "cus_AirsSJNVuh97Jb"
+          // ));
+
 
         // reset cart content
         Cart::destroy();
@@ -60,11 +78,7 @@ class CheckoutController extends Controller
 
          // redirect
          return redirect()->route('shop');
-       } else {
 
-         Session::flash('fail', 'The cart must no be empty.');
-         return redirect()->route('shop');
-       }
     }
 
 

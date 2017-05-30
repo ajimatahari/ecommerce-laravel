@@ -21,6 +21,8 @@ class CreateAddressesTable extends Migration
             $table->string('post_code');
             $table->string('country');
             $table->integer('user_id');
+            $table->tinyInteger('shipping_address');
+            $table->tinyInteger('billing_address');
             $table->timestamps();
         });
 

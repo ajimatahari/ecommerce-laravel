@@ -44,6 +44,9 @@
                   {{ Form::textarea('content', null, ['class' => 'form-control', 'disabled' => 'true']) }}
               </div>
 
+              <div class="form-group">
+                  <a href="{{ route('messages.index')}}" class="btn btn-lg btn-block btn-secondary"> Go back </a>
+              </div>
 
             {!! Form::close() !!}
       </div>

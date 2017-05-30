@@ -27,7 +27,7 @@
         <!-- Top navigation bar -->
         @include('layouts._nav')
 
-        <div class="jumbotron jumbotron-fluid">
+        <div class="jumbotron jumbotron-fluid jumbotron-top">
           <div class="container">
             <h1 class="display-1 text-center">E-commerce App</h1>
 
@@ -36,11 +36,13 @@
         </div>
 
         <!-- Page custom content -->
-          <div class="page-content">
+
 
             <!-- Display session flash messages -->
-            @include('layouts._messages')
-
+            <div class="container">
+                @include('layouts._messages')
+            </div>
+            <div class="page-content">
               @yield('content')
           </div>
 
@@ -54,7 +56,7 @@
             </div>
 
             <div class="col-md-5 mx-auto">
-                <a href="{{ route('login') }}" class="btn btn-success btn-lg"> Create an account </a>
+                <a href="{{ route('register') }}" class="btn btn-success btn-lg"> Create an account </a>
             </div>
 
           </div>
