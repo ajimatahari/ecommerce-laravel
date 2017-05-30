@@ -23,7 +23,14 @@ Laravel is accessible, yet powerful, providing tools needed for large, robust ap
 
 # Setup
 
+```php
+<?php
 
+$php artisan migrate
+
+
+>?
+```
 
 # Project description
 
@@ -41,7 +48,7 @@ Simple ecommerce project.
 ## Resources used
 
 - mailtrap.io for mailing tests
-- [Crinsane cart] (https://github.com/Crinsane/LaravelShoppingcart) 
+- [Crinsane cart] (https://github.com/Crinsane/LaravelShoppingcart)
 - Stripe.js for processing payments
 - Reporting tab (on admin dashboard) from Google Analytics
 
