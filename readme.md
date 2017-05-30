@@ -1,4 +1,4 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
+<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"> Ecommerce project </p>
 
 <p align="center">
 <a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
@@ -7,19 +7,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb combination of simplicity, elegance, and innovation give you tools you need to build any application with which you are tasked.
 
 # Setup
 
@@ -37,15 +24,21 @@ Laravel is accessible, yet powerful, providing tools needed for large, robust ap
   $php artisan serve
 ```
 
+Login details
+
+ | Admin | Customer
+Username: | admin@test.com | customer@test.com
+Password: | admindemo | customer
+
 # Project description
 
-Simple ecommerce project.
+Simple ecommerce project. On this project I tried to focus more on the functional part of the system rather on design.
 
 ## Project main features
 
 - Cart system
 - Ordering system (use cart items)
-- One time payments setup (Stripe charge)
+- Use stripe.js for single payments/charge (did not implement subscriptions)
 - Users management
 - Products management
 - Product reviews (added by customers and pending approval from the admin before being display on the product page)
@@ -57,7 +50,8 @@ Simple ecommerce project.
 - mailtrap.io (used for mailing tests during development)
 - Crinsane cart (https://github.com/Crinsane/LaravelShoppingcart)
 - Stripe.js for processing payments
-- Reporting tab (on admin dashboard) from Google Analytics
+- Laravel Form helpers
+
 
 ## Future work (features and bug fixes)
 
@@ -70,6 +64,8 @@ Simple ecommerce project.
 - Live user search using AJAX
 - Output HTML from database (reviews)
 - Send message reply / send message to users (to their email address)
-- Billing and invoices creation
+- Create stripe customers on register
+- Billing and invoices creation with stripe.js
 - Save wishlists (cart instances)
 - Push notifications
+- Reporting tab (on admin dashboard) from Google Analytics
