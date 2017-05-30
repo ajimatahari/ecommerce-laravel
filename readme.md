@@ -24,11 +24,13 @@
   $php artisan serve
 ```
 
-Login details
+###Demo details
+Admin username: admin@test.com
+Admin password: admindemo
 
- | Admin | Customer
-Username: | admin@test.com | customer@test.com
-Password: | admindemo | customer
+Customer username: customer@test.com
+Customer password: customer
+
 
 # Project description
 
