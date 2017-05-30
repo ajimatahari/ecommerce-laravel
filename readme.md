@@ -24,12 +24,7 @@ Laravel is accessible, yet powerful, providing tools needed for large, robust ap
 # Setup
 
 ```php
-<?php
-
-$php artisan migrate
-
-
->?
+  $php artisan migrate
 ```
 
 # Project description
