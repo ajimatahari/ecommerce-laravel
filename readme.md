@@ -23,8 +23,18 @@ Laravel is accessible, yet powerful, providing tools needed for large, robust ap
 
 # Setup
 
+1. Create a new project folder
+```php
+  $composer create-project laravel/laravel ecommerce-laravel
+```
+
 ```php
   $php artisan migrate
+```
+
+2. How to run the project: download/clone link and run the next command:
+```php
+  $php artisan serve
 ```
 
 # Project description
@@ -33,26 +43,30 @@ Simple ecommerce project.
 
 ## Project main features
 
-- Ordering system
-- One time payments (charge)
+- Cart system
+- Ordering system (use cart items)
+- One time payments setup (Stripe charge)
 - Users management
 - Products management
-
+- Product reviews (added by customers and pending approval from the admin before being display on the product page)
+- Sending mails to customers
 
 
 ## Resources used
 
-- mailtrap.io for mailing tests
-- [Crinsane cart] (https://github.com/Crinsane/LaravelShoppingcart)
+- mailtrap.io (used for mailing tests during development)
+- Crinsane cart (https://github.com/Crinsane/LaravelShoppingcart)
 - Stripe.js for processing payments
 - Reporting tab (on admin dashboard) from Google Analytics
 
 ## Future work (features and bug fixes)
 
 - Fix middleware (admin)
+- Send mail on register
 - Redo checkout process (UK post code to stripe form and link address)
 - Validate input
 - Emails HTML templates (contact and order confirmation)
+- Style reviews messages
 - Live user search using AJAX
 - Output HTML from database (reviews)
 - Send message reply / send message to users (to their email address)
