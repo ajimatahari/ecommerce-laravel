@@ -12,29 +12,37 @@
 
 1. Create a new project folder
 ```php
-  $composer create-project laravel/laravel ecommerce-laravel
+  $ composer create-project laravel/laravel ecommerce-laravel
 ```
+
+2. How to run the project
+- Download / clone project link and from the repository
+- Create a database named "ecommerce" on your localhost/server test
+- Go to the folder project and run the migration with the seed data
 
 ```php
-  $php artisan migrate
+  $ php artisan migration --seed
 ```
 
-2. How to run the project: download/clone link and run the next command:
+- Run the next command to launch the project
 ```php
-  $php artisan serve
+  $ php artisan serve
 ```
 
-###Demo details
-Admin username: admin@test.com
-Admin password: admindemo
+### Admin demo account details
+Username: admin@test.com
+Password: admindemo
 
-Customer username: customer@test.com
-Customer password: customer
+
+### Customer demo account details
+Username: customer@test.com
+Password: customer
 
 
 # Project description
 
-Simple ecommerce project. On this project I tried to focus more on the functional part of the system rather on design.
+Simple ecommerce project created from scratch. The project direction leaned towards the focus on the functional part of the system rather than the design part/skills.
+
 
 ## Project main features
 
@@ -44,30 +52,34 @@ Simple ecommerce project. On this project I tried to focus more on the functiona
 - Users management
 - Products management
 - Product reviews (added by customers and pending approval from the admin before being display on the product page)
-- Sending mails to customers
+- Sending emails to customers on register, orders placed/confirmation, payment confirmation
+- Contact messages management, send messages replies to users
+- User address and payment details management, reviews, orders placed details
 
 
 ## Resources used
 
+- PHP with Laravel, Bootstrap 4, HTML & CSS, MySQL, JavaScript
 - mailtrap.io (used for mailing tests during development)
-- Crinsane cart (https://github.com/Crinsane/LaravelShoppingcart)
+- Crinsane shopping cart (https://github.com/Crinsane/LaravelShoppingcart)
 - Stripe.js for processing payments
-- Laravel Form helpers
+- Laravel form helpers
 
 
 ## Future work (features and bug fixes)
 
-- Fix middleware (admin)
-- Send mail on register
-- Redo checkout process (UK post code to stripe form and link address)
-- Validate input
-- Emails HTML templates (contact and order confirmation)
-- Style reviews messages
-- Live user search using AJAX
-- Output HTML from database (reviews)
-- Send message reply / send message to users (to their email address)
-- Create stripe customers on register
-- Billing and invoices creation with stripe.js
-- Save wishlists (cart instances)
-- Push notifications
-- Reporting tab (on admin dashboard) from Google Analytics
+- [ ] Fix middleware (admin)
+- [X] Send mail on register
+- [ ] Redo checkout process (UK post code to stripe form and link address)
+- [ ] Validate input (address details, card/payment details, products, checkout)
+- [ ] Emails HTML templates (contact and order confirmation)
+- [ ] Style reviews messages
+- [ ] Live user search using AJAX
+- [ ] Output HTML from database (reviews)
+- [ ] Send message reply / send message to users (to their email address)
+- [ ] Create stripe customers on register
+- [ ] Billing and invoices creation with stripe.js
+- [ ] Save wishlists (cart instances)
+- [ ] Push notifications
+- [ ] Reporting tab (on admin dashboard) from Google Analytics
+- [ ] Style product page
