@@ -10,12 +10,7 @@
 
 # Setup
 
-1. Create a new project folder
-```php
-  $ composer create-project laravel/laravel ecommerce-laravel
-```
-
-2. How to run the project
+## How to run the project
 - Download / clone project link and from the repository
 - Create a database named "ecommerce" on your localhost/server test
 - Go to the folder project and run the migration with the seed data
