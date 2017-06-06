@@ -27,8 +27,16 @@
 
           <br>
 
-          @foreach($addresses as $s)
-              <div class="shipping_address"></div>
+          @foreach($addresses as $addresss)
+              <div class="shipping_address">
+                  @if ($address->billing_address)
+                      <br> {{ $address->address_line }}
+                      <br> {{ $address->city }}
+                      <br> {{ $address->state }}
+                      <br> {{ $address->post_code }}
+                      <br> {{ $address->country }}
+                  @endif
+             </div>
           @endforeach
 
           {!! Form::close() !!}
@@ -47,13 +55,21 @@
                           <option value='{{ $address->id }}'> {{ $address->address_line }} </option>
                         @endforeach
                     </select>
-                  </div><a href="#" class="btn btn-sm btn-primary">Add new</a>
+                </div>
             </div>
 
             <br>
 
             @foreach($addresses as $s)
-                <div class="shipping_address"></div>
+                <div class="shipping_address">
+                  @if ($address->shipping_address)
+                      <br> {{ $address->address_line }}
+                      <br> {{ $address->city }}
+                      <br> {{ $address->state }}
+                      <br> {{ $address->post_code }}
+                      <br> {{ $address->country }}
+                  @endif
+                </div>
             @endforeach
           {!! Form::close() !!}
         </div> <!-- end of shipping details -->

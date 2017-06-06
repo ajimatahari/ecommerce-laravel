@@ -59,8 +59,6 @@ class CheckoutController extends Controller
           "source" => $token,
         ));
 
-
-
         // Create new order
         Order::createOrder();
 
@@ -68,7 +66,6 @@ class CheckoutController extends Controller
           // \Stripe\Invoice::create(array(
           //     "customer" => "cus_AirsSJNVuh97Jb"
           // ));
-
 
         // reset cart content
         Cart::destroy();

@@ -64,7 +64,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function(
   Route::resource('/images', 'ProductImagesController');
 
   Route::get('/messages', 'MessagesController@index')->name('messages.index');
-  Route::get('/messages/{message}', 'MessagesController@show');
+  Route::get('/messages/{message}', 'MessagesController@show')->name('messages.show');
+  Route::post('/messages/{message}', 'MessagesController@reply')->name('messages.reply');
 
   Route::get('/reviews', 'ReviewsController@index');
   Route::get('/reviews/{review}', 'ReviewsController@toggleApproval')->name('reviews.approve');

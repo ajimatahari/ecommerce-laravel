@@ -1,3 +1,8 @@
+
+html, body {
+  font-size: 0.8vw;
+}
+
 .page-content {
   margin: 5% 0;
 }
@@ -20,7 +25,7 @@
 .get-started, .copy {
   background-color: black;
   color: white;
-  padding:1%;;
+  padding:1%;
 }
 
 footer {
@@ -52,9 +57,10 @@ a {
 
 #home {
   background-image: url('/images/home2.jpg');
-  background-size: cover;
-  background-size: 100%;
-  height: 100vh;
+  background-repeat: no-repeat;
+  height: 70vw;
+border-bottom: none;
+background-size: 115vw;
 
 }
 
@@ -65,7 +71,7 @@ a {
 }
 
 .stats {
-  background-color: grey; 
+  background-color: grey;
 }
 
 .notification {
@@ -105,4 +111,58 @@ a {
 
 .StripeElement--webkit-autofill {
   background-color: #fefde5 !important;
+}
+
+
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    body {
+        font-size: 0.5rem !important;
+    }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen and (min-width : 321px) {
+/* Styles */
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen and (max-width : 320px) {
+/* Styles */
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* Styles */
+}
+
+/* iPads (landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+/* Styles */
+}
+
+/* iPads (portrait) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+/* Styles */
+}
+/**********
+iPad 3
+**********/
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+/* Styles */
+}
+
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+/* Styles */
+}
+/* Desktops and laptops ----------- */
+@media only screen  and (min-width : 1224px) {
+ body {
+        font-size: 1rem;
+    }
+}
+
+/* Large screens ----------- */
+@media only screen  and (min-width : 1824px) {
+/* Styles */
 }

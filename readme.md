@@ -13,10 +13,10 @@
 ## How to run the project
 - Download / clone project link and from the repository
 - Create a database named "ecommerce" on your localhost/server test
-- Go to the folder project and run the migration with the seed data
+- Go to the folder project and run the migration with the seed data (default test data) command
 
 ```php
-  $ php artisan migration --seed
+  $ php artisan migrate --seed
 ```
 
 - Run the next command to launch the project
@@ -52,7 +52,7 @@ Simple ecommerce project created from scratch. The project direction leaned towa
 - User address and payment details management, reviews, orders placed details
 
 
-## Resources used
+## Resources
 
 - PHP with Laravel, Bootstrap 4, HTML & CSS, MySQL, JavaScript
 - mailtrap.io (used for mailing tests during development)
@@ -67,13 +67,14 @@ Simple ecommerce project created from scratch. The project direction leaned towa
 - [X] Send mail on register
 - [ ] Redo checkout process (UK post code to stripe form and link address)
 - [ ] Validate input (address details, card/payment details, products, checkout)
-- [ ] Emails HTML templates (contact and order confirmation)
+- [ ] Emails HTML templates (contact and order confirmation) using Mail Markdown
 - [ ] Style reviews messages
 - [ ] Live user search using AJAX
 - [ ] Output HTML from database (reviews)
-- [ ] Send message reply / send message to users (to their email address)
+- [X] Send message reply / send message to users (to their email address)
 - [ ] Create stripe customers on register
 - [ ] Billing and invoices creation with stripe.js
+- [ ] Stock management
 - [ ] Save wishlists (cart instances)
 - [ ] Push notifications
 - [ ] Reporting tab (on admin dashboard) from Google Analytics

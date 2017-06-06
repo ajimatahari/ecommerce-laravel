@@ -47,7 +47,8 @@ class Order extends Model
           'email'=> 'andrei.hribanas@gmail.com',
           'subject' => 'Order confirmation: '. $order->id ,
           'to' =>  $order->user->email,
-          'content' => 'Payment received for the order. The goods will be dispatched soon.'
+          'content' => 'Payment received for the order. The goods will be dispatched soon.',
+          'amount' => Cart::total(),
         ];
 
         // send order confirmation mail

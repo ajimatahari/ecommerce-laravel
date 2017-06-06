@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Mail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -63,12 +64,33 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
 
+        // send register confirmation mail
+        $fields = [
+          'name' => 'Company name',
+          'email'=> 'andrei.hribanas@gmail.com',
+          'subject' => 'Account registration confirmation',
+          'to' =>  $data['email'],
+          'content' => 'Your account was succesfully created. The account credentials are listed below.',
+          'username' => $data['email'],
+          'password' => $data['password'],
+        ];
+
+        // send order confirmation mail
+        Mail::send('emails.confirm_registration', $fields, function($message) use ($fields) {
+            $message->from($fields['email']);
+            $message->to($fields['to']);
+            $message->subject($fields['subject']);
+        });
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'admin' => 0,
         ]);
+
+
+
 
     }
 }

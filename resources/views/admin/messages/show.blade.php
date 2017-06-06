@@ -16,7 +16,7 @@
     <hr>
 
     <div class="row">
-        <div class="col-md-8 offset-md-2">
+        <div class="col-md-6 offset-md-1">
             <h3 class="text-center"> Message details </h3>
             <hr>
 
@@ -49,7 +49,30 @@
               </div>
 
             {!! Form::close() !!}
-      </div>
+          </div>
+
+          <div class="col-md-4">
+              <h3 class="text-center"> Reply to customer </h3>
+              <hr>
+
+              <br>
+
+              {!! Form::open(['route' =>['messages.reply', $message->id], 'method' => 'POST']) !!}
+
+              {{ Form::hidden('subject', $message->subject) }}
+              {{ Form::hidden('from', $message->email) }}
+
+                <div class="form-group">
+                    {{ Form::label('reply', 'Reply message') }}
+                    {{ Form::textarea('reply', null, ['class' => 'form-control']) }}
+                </div>
+
+                <div class="form-group">
+                    {{ Form::submit('Send reply', ['class' => 'btn btn-lg btn-block btn-success']) }}
+                </div>
+              {!! Form::close() !!}
+
+        </div>
     </div>
   </div>
 
