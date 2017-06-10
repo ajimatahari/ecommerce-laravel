@@ -16,12 +16,6 @@
 
       <hr>
 
-      <div class="row col-md-10 offset-md-1">
-          <input type="text" name="name_search" class="form-control bg-success" value="" placeholder="Enter username">
-      </div>
-
-      <hr>
-
         <table class="table table-striped table-bordered  table-hover">
             <thead class="text-center">
                   <th>ID</th>

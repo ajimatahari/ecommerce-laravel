@@ -36,11 +36,10 @@
                       <li class="nav-item dropdown">
                           <a class="nav-link dropdown-toggle " href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <strong> Hello, {{  Auth::user()->name }}  </strong> </a>
                           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="{{ url('/address') }}"> Address details </a>
-                            <a class="dropdown-item" href="{{ route('cards.index') }}"> Payment details </a>
-                            <a class="dropdown-item" href=""> Wishlists </a>
+                            <a class="dropdown-item" href="{{ route('account-details.index') }}"> Account details </a>
                             <a class="dropdown-item" href="{{ route('user.orders') }}"> Orders placed </a>
                             <a class="dropdown-item" href="{{ route('user.reviews') }}"> Reviews </a>
+                            <a class="dropdown-item" href=""> Wishlists </a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="{{ route('logout') }}"> Logout </a>
                           </div>

@@ -2,6 +2,9 @@
 
 @section('title', ' | Product ')
 
+@section('stylesheets')
+
+@endsection
 
 @section('content')
 
@@ -82,4 +85,8 @@
         </div>
       </div> <!-- end of card row -->
 </div>
+@endsection
+
+@section('scripts')
+
 @endsection

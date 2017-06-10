@@ -63,11 +63,7 @@
     <br>
 
     <div class="row">
-        <div class="col-md-6">
-            <a href="{{ action('WishlishtController@store') }}" class="btn btn-lg btn-primary btn-block"> Save wishlist </a>
-        </div>
-
-        <div class="col-md-6">
+        <div class="col-md-6 offset-md-3">
             <a href="{{ route('checkout') }}" class="btn btn-lg  btn-primary btn-block"> Checkout </a>
         </div>
     </div>

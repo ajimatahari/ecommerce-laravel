@@ -24,6 +24,8 @@
   $ php artisan serve
 ```
 
+- Update Stripe test key with your own API key
+
 ### Admin demo account details
 Username: admin@test.com
 Password: admindemo
@@ -43,7 +45,7 @@ Simple ecommerce project created from scratch. The project direction leaned towa
 
 - Cart system
 - Ordering system (use cart items)
-- Use stripe.js for single payments/charge (did not implement subscriptions)
+- Stripe.js integration for single payments/charges (did not implement subscriptions)
 - Users management
 - Products management
 - Product reviews (added by customers and pending approval from the admin before being display on the product page)
@@ -63,19 +65,19 @@ Simple ecommerce project created from scratch. The project direction leaned towa
 
 ## Future work (features and bug fixes)
 
-- [ ] Fix middleware (admin)
+- [X] Fix middleware (admin)
 - [X] Send mail on register
-- [ ] Redo checkout process (UK post code to stripe form and link address)
+- [ ] Checkout process (UK post code to stripe form)
 - [ ] Validate input (address details, card/payment details, products, checkout)
 - [ ] Emails HTML templates (contact and order confirmation) using Mail Markdown
 - [ ] Style reviews messages
-- [ ] Live user search using AJAX
-- [ ] Output HTML from database (reviews)
+- [X] Output HTML from database (reviews)
 - [X] Send message reply / send message to users (to their email address)
 - [ ] Create stripe customers on register
 - [ ] Billing and invoices creation with stripe.js
 - [ ] Stock management
-- [ ] Save wishlists (cart instances)
-- [ ] Push notifications
+- [ ] Shipping system
+- [ ] Push notifications on orders placed, reviews
 - [ ] Reporting tab (on admin dashboard) from Google Analytics
 - [ ] Style product page
+- [ ] Save wishlists

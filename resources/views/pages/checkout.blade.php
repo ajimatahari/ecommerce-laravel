@@ -7,39 +7,27 @@
 
     <div class="container">
       <section>
+          {!! Form::open(['route' => 'checkout.completeOrder', 'method' => 'POST', 'id' => 'payment-form']) !!}
       <div class="row">
 
         <!-- Billing details -->
         <div class="col-md-5">
+
             <h3 class="text-center">Shipping details</h3>
             <hr> <br>
 
-          <div class="row form-group">
-                <div class="col-md-4"> <strong>{{ Form::label('select_shipping', 'Select address:') }}</strong> </div>
-                <div class="col-md-8">
-                  <select class="form-control" name="category">
-            					@foreach($addresses as $address)
-            						<option value='{{ $address->id }}'> {{ $address->address_line }} </option>
-            					@endforeach
-          				</select>
-                </div>
-          </div>
+              {{  Form::hidden('details_id', $details->id)}}
 
-          <br>
-
-          @foreach($addresses as $addresss)
-              <div class="shipping_address">
-                  @if ($address->billing_address)
-                      <br> {{ $address->address_line }}
-                      <br> {{ $address->city }}
-                      <br> {{ $address->state }}
-                      <br> {{ $address->post_code }}
-                      <br> {{ $address->country }}
+              <div class=" col-md-8 offset-md-2 shipping_address">
+                  @if ($details)
+                      <br> {{ $details->address_line }}
+                      <br> {{ $details->city }}
+                      <br> {{ $details->state }}
+                      <br> {{ $details->post_code }}
+                      <br> {{ $details->country }}
                   @endif
              </div>
-          @endforeach
 
-          {!! Form::close() !!}
         </div> <!-- end of shipping details -->
 
 
@@ -48,30 +36,16 @@
             <h3 class="text-center"> Billing details</h3>
             <hr> <br>
 
-            <div class="row form-group">
-                  <div class="col-md-10">
-                    <select class="form-control" name="category">
-                        @foreach($addresses as $address)
-                          <option value='{{ $address->id }}'> {{ $address->address_line }} </option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
+            <div class="col-md-8 offset-md-2 billing_address">
+                @if ($details)
+                    <br> {{ $details->address_line }}
+                    <br> {{ $details->city }}
+                    <br> {{ $details->state }}
+                    <br> {{ $details->post_code }}
+                    <br> {{ $details->country }}
+                @endif
+           </div>
 
-            <br>
-
-            @foreach($addresses as $s)
-                <div class="shipping_address">
-                  @if ($address->shipping_address)
-                      <br> {{ $address->address_line }}
-                      <br> {{ $address->city }}
-                      <br> {{ $address->state }}
-                      <br> {{ $address->post_code }}
-                      <br> {{ $address->country }}
-                  @endif
-                </div>
-            @endforeach
-          {!! Form::close() !!}
         </div> <!-- end of shipping details -->
 
       </div> <!-- end of row -->
@@ -84,9 +58,10 @@
             <h3 class="text-center">Payment details</h3>
             <hr><br>
 
-            {!! Form::open(['route' => 'checkout.completeOrder', 'method' => 'POST', 'id' => 'payment-form']) !!}
+            <div class="col-md-8 offset-md-2">
 
-              <div class="form-row">
+
+              {{-- <div class="form-row">
                 <label for="card-element">
                   Credit or debit card
                 </label>
@@ -103,9 +78,37 @@
 
               <div class="form-group">
                   <button class="btn btn-success btn-lg btn-block"> Buy now </button>
-              </div>
+              </div> --}}
+
+
+              <div class="form-group">
+                   <label for="card-element">
+                     Credit or debit card
+                   </label>
+                   <div id="card-element" class="form-control">
+                     <!-- a Stripe Element will be inserted here. -->
+
+                   </div>
+
+                   <!-- Used to display form errors -->
+                   <div id="card-errors"></div>
+                 </div>
+
+                 <div class="form-group">
+                     <div class="row">
+                       <div class="col-md-5"><label for="amount"> Total amount to pay: </label></div>
+                       <div class="col-md-6 offset-md-1"><input type="text" name="amount" id="amount" value="{{ Cart::total() }}" class="form-control" readonly></div>
+                     </div>
+                 </div>
+
+                 <br>
+
+                 <div class="form-group">
+                     <button class="btn btn-lg btn-block btn-success"> Buy now </button>
+                 </div>
 
             {!! Form::close() !!}
+          </div>
 
 
         </div> <!-- end of payment details -->
@@ -118,7 +121,14 @@
 
 @section('scripts')
 
+  <!-- Load Stripe.js payments handler -->
+  <script src="https://js.stripe.com/v2/"></script>
+  <script src="https://js.stripe.com/v3/"></script>
+
   <script type="text/javascript">
+
+    // populate shipping_address
+
 
   // initialize stripe client - provide API key
   var stripe = Stripe('pk_test_r3y0aPWDzWt8vDwHsJC86Zeh');
@@ -167,6 +177,7 @@
           });
         });
 
+      //  $('#card-element').val($detail->card_number);
 
       function stripeTokenHandler(token) {
         // Insert the token ID into the form so it gets submitted to the server

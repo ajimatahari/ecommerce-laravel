@@ -35,6 +35,10 @@ class User extends Authenticatable
       return $this->hasMany('App\Address');
     }
 
+    public function details() {
+      return $this->hasMany('App\AccountDetails');
+    }
+
     public function cards() {
       return $this->hasMany('App\Card');
     }
@@ -49,5 +53,9 @@ class User extends Authenticatable
 
     public function reviews() {
       return $this->hasMany('App\Review');
+    }
+
+    public function invoices() {
+      return $this->hasMany('App\Invoice');
     }
 }

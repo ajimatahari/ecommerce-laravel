@@ -39,6 +39,7 @@ Route::group(['middleware' => ['auth']], function() {
   Route::get('/address-shipping/{id}', 'AddressController@toggleShippingAddress')->name('address.toggleShippingAddress');
   Route::resource('/cards', 'CardsController');
   Route::get('/cards/toggleDefaultCard/{id}', 'CardsController@toggleDefaultCard')->name('cards.toggleDefaultCard');
+  Route::resource('/account-details', 'AccountDetailsController', ['except' => ['create', 'edit', 'show']]);
 
   // User orders details
   Route::get('/user-orders', 'PagesController@getUserOrders')->name('user.orders');
